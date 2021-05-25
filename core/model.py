@@ -11,13 +11,13 @@ Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 import copy
 import math
 
-from munch import Munch
+
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from core.wing import FAN
+
 
 
 class ResBlk(nn.Module):
@@ -280,6 +280,9 @@ class Discriminator(nn.Module):
 
 
 def build_model(args):
+    from munch import Munch
+    from core.wing import FAN
+    
     generator = Generator(args.img_size, args.style_dim, w_hpf=args.w_hpf)
     mapping_network = MappingNetwork(args.latent_dim, args.style_dim, args.num_domains)
     style_encoder = StyleEncoder(args.img_size, args.style_dim, args.num_domains)
